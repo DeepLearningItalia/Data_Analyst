@@ -1,0 +1,139 @@
+Introduzione a Colab e Python
+python
+
+2 + 2
+# ho fatto la mia prima addizione in python
+
+print("Hello, World!")
+# ho untilizzato "print" per mandare a schermo il messaggio contenuto tra le parentesi tonde.
+# la frase printata è una stringa. lo so perchè è compresa tra "" gli apici doppi.
+
+print("4Python is fun!4")
+
+Tipi di dati in Python (Parte 1)
+
+# Interi (int)
+numero_intero = 10
+print(numero_intero, type(numero_intero))
+
+# Numeri in virgola mobile (float)
+numero_decimale = 3.14
+print(numero_decimale)
+
+Tipi di dati in Python (Parte 2)
+
+# Stringhe (str)
+testo = "Ciao mondo!"
+print(testo, type(testo))
+
+# Booleani (bool)
+vero = True
+falso = False
+print(vero, type(vero))
+print(falso, type(falso))
+
+# Liste (list)
+lista_numeri = [1, 2, 3, 4, 5]
+lista_mista = [1, "ciao", 3.14, True]
+print(lista_numeri)
+print(lista_mista)
+
+# Tuple (tuple)
+tupla_numeri = (1, 2, 3, 4, 5)
+tupla_mista = (1, "ciao", 3.14, True)
+print(tupla_numeri, type(tupla_numeri))
+print(tupla_mista, type(tupla_mista))
+
+# Dizionari (dict)
+dizionario = {"nome": "Mario", "età": 30, "città": "Roma"}
+print(dizionario)
+dizionario["professione"] = "Ingegnere"
+dizionario["età"] = 26
+print(dizionario)
+
+# Insiemi (set)
+insieme_numeri = {1, 2, 3, 4, 5}
+print(insieme_numeri)
+Principi di coding per la statistica (Parte 1)
+
+import pandas as pd
+
+# Creazione di un DataFrame da un dizionario di liste
+dati = {
+    'ID': [1, 2, 3],
+    'Nome': ['Maria Rossi', 'Luca Bianchi', 'Giulia Verdi'],
+    'Età': [45, 60, 30],
+    'Diagnosi': ['Ipertensione', 'Diabete', 'Asma']
+}
+df = pd.DataFrame(dati)
+
+# Visualizzazione del DataFrame
+print(df)
+
+Principi di coding per la statistica (Parte 2)
+
+import pandas as pd
+
+# Dati non strutturati
+dati_non_strutturati = [
+    "Deep Learning Italia",
+    "Questo è un esempio di testo non strutturato.",
+    "Potrebbe contenere recensioni di prodotti, commenti sui social media, o qualsiasi altro tipo di testo libero.",
+    "L'analisi di questi dati richiede tecniche di elaborazione del linguaggio naturale (NLP).",
+]
+
+# Creazione di un DataFrame
+df_non_strutturato = pd.DataFrame({"Testo": dati_non_strutturati})
+
+# Visualizzazione del DataFrame
+print(df_non_strutturato)
+
+Principi di coding per la statistica (Parte 3)
+
+# Dichiarazione di variabili
+nome = "Luca"  # Variabile di tipo stringa
+età = 25       # Variabile di tipo intero
+altezza = 1.75 # Variabile di tipo float (numero decimale)
+
+# Stampa delle variabili
+print("Nome:", nome)
+print("Età:", età)
+print("Altezza:", altezza)
+Costruzione e manipolazione di stringhe (Parte 1)
+python
+Copia codice
+str1 = "Hello"
+str2 = "World"
+result = str1 + " " +  str2  # Aggiunge uno spazio tra le due stringhe
+print(result)
+
+stringa = "Hello World"
+substring = stringa[0:5]  # Estrae i primi 5 caratteri
+print(substring)
+
+substring = stringa[6:]  # Estrae i caratteri dal 6° alla fine
+print(substring)
+
+substring = stringa[::3]  # Estrae ogni secondo carattere
+print(substring)
+
+Costruzione e manipolazione di stringhe (Parte 2)
+
+stringa = "  Hello World  "
+modificata = stringa.strip()  # Rimuove gli spazi bianchi iniziali e finali
+print(modificata)
+
+modificata = stringa.lower()  # Converte la stringa in minuscolo
+print(modificata)
+
+modificata = stringa.upper()  # Converte la stringa in maiuscolo
+print(modificata)
+
+modificata = stringa.replace("World", "Python")  # Sostituisce "World" con "Python"
+print(modificata)
+
+parti = stringa.split()  # Divide la stringa in una lista di parole
+print(parti)
+
+modificata = " - ".join(parti)  # Combina la lista di parole in una singola stringa con " - " come delimitatore
+print(modificata)
