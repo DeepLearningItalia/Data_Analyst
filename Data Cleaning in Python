@@ -1,0 +1,77 @@
+# Caricamento del dataset Titanic
+url = "https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv"
+titanic_df = pd.read_csv(url)
+
+print(titanic_df.info())
+print(titanic_df.duplicated().sum())
+
+Gestione di righe, colonne e dati duplicati
+
+titanic_df = titanic_df.drop_duplicates()
+print(titanic_df.isnull().sum())
+print(titanic_df['Cabin'].describe())
+print(titanic_df['Age'].describe())
+
+titanic_df['Age'].fillna(titanic_df['Age'].mean(), inplace=True)
+print(titanic_df)
+
+# Calcolare la media dell'età per classe di passeggeri
+mean_age_by_sex = titanic_df.groupby('Sex')['Age'].mean()
+
+def fill_age(row):
+    if pd.isnull(row['Age']):
+        return mean_age_by_sex[row['Sex']]
+    else:
+        return row['Age']
+
+titanic_df['Age'] = titanic_df.apply(fill_age, axis=1)
+print(titanic_df['Age'].isnull().sum())
+print(titanic_df['Age'].describe())
+
+Indicatori di posizione
+
+# Visualizzazione dei primi 5 valori della colonna 'Name' prima della standardizzazione
+print("Nomi originali:\n", titanic_df['Name'].head())
+
+titanic_df['Name'] = titanic_df['Name'].str.lower()
+print("Nomi modificati:\n", titanic_df['Name'].head())
+
+Gestione degli outliers (Parte 1)
+
+import matplotlib.pyplot as plt
+
+# Calcolare il 1° e il 99° percentile
+lower_threshold = titanic_df['Fare'].quantile(0.01)
+upper_threshold = titanic_df['Fare'].quantile(0.99)
+
+# Filtrare il DataFrame per includere solo i valori tra queste soglie
+titanic_df_filtered = titanic_df[(titanic_df['Fare'] >= lower_threshold) & (titanic_df['Fare'] <= upper_threshold)]
+
+plt.figure(figsize=(10, 6))
+plt.boxplot(titanic_df['Fare'].dropna(), vert=False)
+plt.title('Boxplot di Fare')
+plt.show()
+
+Gestione degli outliers (Parte 2)
+
+# Calcolare il 1° e il 99° percentile
+lower_threshold = titanic_df['Fare'].quantile(0.01)
+upper_threshold = titanic_df['Fare'].quantile(0.99)
+
+# Filtrare il DataFrame per includere solo i valori tra queste soglie
+titanic_df_filtered = titanic_df[(titanic_df['Fare'] >= lower_threshold) & (titanic_df['Fare'] <= upper_threshold)]
+
+plt.figure(figsize=(10, 6))
+plt.boxplot(titanic_df['Fare'].dropna(), vert=False)
+plt.title('Boxplot di Fare')
+plt.show()
+
+Conversione di dati
+
+# Cambiare il tipo di dati della colonna 'Fare'
+titanic_df['Fare'] = titanic_df['Fare'].astype(int)
+print(titanic_df.dtypes)
+
+if titanic_df['Fare'].dtype != 'float':
+    titanic_df['Fare'] = titanic_df['Fare'].astype(float)
+print(titanic_df['Fare'].dtype)
