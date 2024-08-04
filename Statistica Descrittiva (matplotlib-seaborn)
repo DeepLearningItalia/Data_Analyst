@@ -1,0 +1,94 @@
+Analisi di frequenze
+
+# Calcolare la frequenza relativa dell'imbarco
+frequenza_relativa_imbarco = ((titanic_df['Pclass'].value_counts() / titanic_df['Pclass'].count()) * 100).round(2)
+print(frequenza_relativa_imbarco)
+
+Media
+
+# Calcolare la media, mediana, moda, varianza, e deviazione standard dell'età
+print(titanic_df['Age'].mean())
+print(titanic_df['Age'].median())
+print(titanic_df['Age'].mode())
+print(titanic_df['Age'].max() - titanic_df['Age'].min())
+print(titanic_df['Age'].var())
+print(titanic_df['Age'].std())
+
+Utilizzo della libreria matplotlib
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Istogramma della lunghezza del sepalo
+plt.figure(figsize=(10, 6))
+plt.hist(iris['sepal_length'], bins=30, color='blue', edgecolor='salmon')
+plt.title('Istogramma della Lunghezza del Sepalo')
+plt.xlabel('Lunghezza del Sepalo')
+plt.ylabel('Frequenza')
+plt.show()
+
+# Box plot della lunghezza del sepalo
+plt.figure(figsize=(10, 6))
+plt.boxplot(iris['sepal_length'])
+plt.title('Box Plot della Lunghezza del Sepalo')
+plt.ylabel('Lunghezza del Sepalo')
+plt.show()
+
+Seaborn
+
+# Istogramma della lunghezza del sepalo con KDE
+plt.figure(figsize=(10, 6))
+sns.histplot(iris['sepal_length'], bins=10, kde=True, color='blue')
+plt.title('Istogramma della Lunghezza del Sepalo con KDE')
+plt.xlabel('Lunghezza del Sepalo')
+plt.ylabel('Frequenza')
+plt.show()
+
+# Box plot delle lunghezze del sepalo per specie
+plt.figure(figsize=(10, 6))
+sns.boxplot(x='species', y='sepal_length', data=iris, palette='Set1')
+plt.title('Box Plot delle Lunghezze del Sepalo per Specie')
+plt.xlabel('Specie')
+plt.ylabel('Lunghezza del Sepalo')
+plt.show()
+
+La matrice di correlazione
+
+# Calcolare la matrice di correlazione
+numeric_data = iris.select_dtypes(include=[np.number])
+correlation_matrix = numeric_data.corr()
+
+# Mappa di calore della matrice di correlazione
+plt.figure(figsize=(10, 6))
+sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', fmt=".2f")
+plt.title('Mappa di Calore della Matrice di Correlazione')
+plt.show()
+
+Pairplot e data visualization
+
+# Pairplot delle variabili selezionate
+sns.pairplot(iris, hue='species', palette='Set1')
+plt.suptitle('Pairplot delle Variabili Selezionate')
+plt.show()
+
+# Scatter plot con diversi marker per ogni specie e linee di densità
+plt.figure(figsize=(12, 8))
+sns.scatterplot(data=iris, x='sepal_length', y='sepal_width', hue='species', style='species', s=100, palette='viridis', alpha=0.6, edgecolor='w', linewidth=0.5)
+
+for species in iris['species'].unique():
+    subset = iris[iris['species'] == species]
+    sns.kdeplot(x=subset['sepal_length'], y=subset['sepal_width'], fill=True, cmap='viridis', alpha=0.3, levels=10)
+
+plt.title('Distribuzione delle Dimensioni dei Sepali e Petali nel Dataset Iris', fontsize=16, weight='bold')
+plt.xlabel('Lunghezza del Sepalo (cm)', fontsize=12)
+plt.ylabel('Larghezza del Sepalo (cm)', fontsize=12)
+plt.legend(title='Specie', title_fontsize='13', fontsize='10', loc='upper left')
+plt.grid(True, linestyle='--', alpha=0.7)
+
+for species, group in iris.groupby('species'):
+    mean_x = group['sepal_length'].mean()
+    mean_y = group['sepal_width'].mean()
+    plt.text(mean_x, mean_y, f'{species}\n({mean_x:.1f}, {mean_y:.1f})', fontsize=12, ha='center', va='center', weight='bold', color='black')
+
+plt.tight_layout()
+plt.show()
