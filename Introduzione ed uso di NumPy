@@ -1,0 +1,70 @@
+import numpy as np
+
+# Creazione di array
+array_1d = np.array([1, 2, 3, 4, 5])
+print(array_1d)
+
+array_2d = np.array([[1, 2, 3], [4, 5, 6]])
+print(array_2d)
+
+array_3d = np.array([[[1, 2, 3], [4, 5, 6]], [[7, 8, 9], [10, 11, 12]]])
+print(array_3d)
+
+zeros_array = np.zeros(5)
+print(zeros_array)
+
+ones_array = np.ones(5)
+print(ones_array)
+
+range_array = np.arange(0, 12, 3)
+print(range_array)
+
+Funzioni ed utilizzo (Parte 1)
+
+# Creiamo un array bidimensionale
+array = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+
+# Attributi shape, size, ndim
+print(array.shape)
+print(array.size)
+print(array.ndim)
+
+Funzioni ed utilizzo (Parte 2)
+
+# Utilizziamo lo slicing per ottenere un sottoarray
+array = np.array([1, 2, 3, 4, 5])
+print(array[1:3])
+
+# Indicizzazione per riga e colonna
+array_2d = np.array([[1, 2, 3], [4, 5, 6]])
+print(array_2d[0, :])
+print(array_2d[:, 2])
+
+Funzioni ed utilizzo (Parte 3)
+
+# Cambiare la forma dell'array
+array = np.arange(6)
+reshaped = array.reshape(3, 2)
+print(reshaped)
+
+Funzioni ed utilizzo (Parte 4)
+
+# Concatenazione di array
+array1 = np.array([1, 2, 3])
+array2 = np.array([4, 5, 6])
+
+array3 = np.array([[1, 2], [3, 4]])
+array4 = np.array([[5, 6], [7, 8]])
+
+concatenated_axis0 = np.concatenate((array3, array4), axis=0)
+print(concatenated_axis0)
+
+concatenated_axis1 = np.concatenate((array3, array4), axis=1)
+print(concatenated_axis1)
+
+array8 = np.array([1, 2, 3], dtype=int)
+array9 = np.array([4.5, 5.5, 6.5], dtype=float)
+
+concatenated_mixed = np.concatenate((array8, array9))
+print(concatenated_mixed)
+print("Data type:", concatenated_mixed.dtype)
